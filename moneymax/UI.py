@@ -36,12 +36,6 @@ def register_user():
         messagebox.showinfo("Success", "User registered successfully.")
     else:
         messagebox.showerror("Error", "Please enter both username and password.")
-
-def simulate_loading():
-    loading_bar.start()  # Start the loading bar
-    root.update()  # Update the main window
-    time.sleep(1)  # Simulate some loading time (you can replace this with actual loading)
-    loading_bar.stop() 
     
 # Function to authenticate a user
 def login():
@@ -59,7 +53,6 @@ def login():
                 messagebox.showinfo("Success", "Login successful.")
                 if not os.path.isfile('database/'+str(username)+'.db'):
                     create_user_database(username)
-                simulate_loading()
                 clear_inputs([username_entry, password_entry])
                 root.destroy() 
                 main()  # Open the main application window
@@ -93,11 +86,6 @@ register_button.pack()
 
 login_button = ctk.CTkButton(root, text="Login", command=login)
 login_button.pack()
-
-# Create a loading bar
-loading_bar = ctk.CTkProgressBar(root, orientation="horizontal", mode="indeterminate")
-loading_bar.pack()
-loading_bar.set(0)
 
 # Run the Tkinter main loop
 root.mainloop()
